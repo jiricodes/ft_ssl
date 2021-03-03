@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 20:18:55 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 21:26:32 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,12 @@
 ** Includes ********************************************************************
 */
 
-#include <assert.h>
-#include <string.h>
-#include <stdio.h>
-
-#include "ft_ssl_utils.h"
-#include "ft_ssl_md5.h"
-
-/*
-** DEFINES **********************************************************************
-*/
-
-#ifndef VERBOSE
-# define VERBOSE 0
-#endif
-
-/*
-** Macros **********************************************************************
-*/
-
-#define CATEGORY(s)		if (VERBOSE) printf("TEST: %s\n", s)
-#define STATUS(c, t)	if (VERBOSE) printf("%s%4d / %4d [%3.0f%%]\n", \
-								c != 1 ? "\033[1A\r" : "", \
-								c, t, ((float)c/(float)t) * 100)
+#include "test.h"
 
 /*
 ** Functions *******************************************************************
 */
+
 
 /*
 ** ft_uint32_left_circular_shift ***********************************************
@@ -1483,5 +1462,9 @@ int			main(void)
 	unittest_binstr();
 	unittest_hexstr();
 	unittest_leftshift();
+	unittest_md5f();
+	unittest_md5g();
+	unittest_md5h();
+	unittest_md5i();
 	return (0);
 }
