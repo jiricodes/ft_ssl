@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 11:18:41 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:52:34 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # include <unistd.h>
 # include <inttypes.h>
+# include "ft_ssl_error.h"
 
 /*
 ** Defines *********************************************************************
@@ -33,5 +34,10 @@
 int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *buffer, size_t len, int fd);
 size_t	ft_strlen(char *buffer);
+int		ft_to_binstr(
+			uint8_t *bytestream,
+			size_t len,
+			char **out,
+			size_t *out_len);
 
 #endif
