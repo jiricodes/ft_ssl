@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 13:16:15 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 16:35:55 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int		ft_to_binstr(
 			size_t len,
 			char **out,
 			size_t *out_len);
-
+int		ft_to_hexstr(
+			uint8_t *bytestream,
+			size_t len,
+			char **out,
+			size_t *out_len);
 #endif
