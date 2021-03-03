@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl_error.h                                     :+:      :+:    :+:   */
+/*   utils_bits.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 18:52:41 by jnovotny         ###   ########.fr       */
+/*   Created: 2021/03/03 18:56:13 by jnovotny          #+#    #+#             */
+/*   Updated: 2021/03/03 20:08:56 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_ERROR_H
-# define FT_SSL_ERROR_H
+#include "ft_ssl_utils.h"
 
-typedef enum		e_ft_ssl_error
+uint32_t	ft_uint32_left_circular_shift(uint32_t	input, size_t shift)
 {
-	FT_SSL_OK,
-	FT_SSL_UNDEFINED,
-	FT_SSL_WRITE_FAIL,
-	FT_SSL_MALLOC_FAIL
-}					t_ft_ssl_error;
+	uint32_t out;
 
-typedef struct		s_ft_ssl_error
-{
-	t_ft_ssl_error	error_id;
-	char			*error_message;
-	char			*additional_information;
-}					t_ft_ssl_error_info;
-
-#endif
+	out = (input << shift) | (input >> (sizeof(input) * 8 - shift));
+	return (out);
+}

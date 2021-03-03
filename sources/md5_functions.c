@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl_error.h                                     :+:      :+:    :+:   */
+/*   md5_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 18:52:41 by jnovotny         ###   ########.fr       */
+/*   Created: 2021/03/03 20:09:26 by jnovotny          #+#    #+#             */
+/*   Updated: 2021/03/03 20:17:44 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_ERROR_H
-# define FT_SSL_ERROR_H
+#include "ft_ssl_md5.h"
 
-typedef enum		e_ft_ssl_error
+uint32_t	ft_md5_f(uint32_t b, uint32_t c, uint32_t d)
 {
-	FT_SSL_OK,
-	FT_SSL_UNDEFINED,
-	FT_SSL_WRITE_FAIL,
-	FT_SSL_MALLOC_FAIL
-}					t_ft_ssl_error;
+	return ((b & c) | (~b & d));
+}
 
-typedef struct		s_ft_ssl_error
+uint32_t	ft_md5_g(uint32_t b, uint32_t c, uint32_t d)
 {
-	t_ft_ssl_error	error_id;
-	char			*error_message;
-	char			*additional_information;
-}					t_ft_ssl_error_info;
+	return ((b & d) | (c & ~d));
+}
 
-#endif
+uint32_t	ft_md5_h(uint32_t b, uint32_t c, uint32_t d)
+{
+	return (b ^ c ^ d);
+}
+
+uint32_t	ft_md5_i(uint32_t b, uint32_t c, uint32_t d)
+{
+	return (c ^ (b | ~d));
+}

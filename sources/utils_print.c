@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 10:52:28 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 11:55:17 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 18:52:16 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ size_t	ft_strlen(char *buffer)
 	return (len);
 }
 
-int		ft_print_binary_fd(uint8_t	*bytestream, size_t len, int fd)
+int		ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd)
 {
 	char	*bitstr;
 	size_t	bitlen;
@@ -67,5 +67,22 @@ int		ft_print_binary_fd(uint8_t	*bytestream, size_t len, int fd)
 		return (ret);
 	}
 	free(bitstr);
+	return (FT_SSL_OK);
+}
+
+int		ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd)
+{
+	char	*hexstr;
+	size_t	hexlen;
+	int		ret;
+
+	if ((ret = ft_to_hexstr(bytestream, len, &hexstr, &hexlen)) != FT_SSL_OK)
+		return (ret);
+	if ((ret = ft_putstr_fd(hexstr, hexlen, fd)) != FT_SSL_OK)
+	{
+		free(hexstr);
+		return (ret);
+	}
+	free(hexstr);
 	return (FT_SSL_OK);
 }

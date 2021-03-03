@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/03 12:48:47 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/03 20:02:51 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LDFLAGS =
 
 SRC_FILES =	error.c \
 			main.c \
+			utils_bits.c \
 			utils_print.c \
 			utils_string.c
 
