@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/03 12:25:50 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/03 12:48:47 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,18 +34,21 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 $(NAME): $(OBJECTS)
-	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
 
 test:
 	make -C tests
 
+test-verb:
+	make -C tests VERB=1
+
 clean:
-	rm $(OBJECTS)
+	-rm $(OBJECTS)
 
 fclean: clean
-	rm $(NAME)
+	-rm $(NAME)
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:25:32 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 11:58:41 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 13:18:51 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,25 @@ int		ft_to_binstr(
 	int		i;
 	char	c;
 	size_t	x;
+	char	*buf;
 
-	*out_len = len * 8 + len;
-	if ((*out = (char *)malloc(*out_len)) == NULL)
+	*out_len = len * 9;
+	if ((buf = (char *)malloc(*out_len)) == NULL)
 		return (FT_SSL_MALLOC_FAIL);
-	*out[*out_len - 1] = '\0';
+	buf[*out_len - 1] = '\0';
 	x = 0;
 	while (len > 0)
 	{
 		i = 7;
 		while (i >= 0)
 		{
-			*out[x++] = ((bytestream[len - 1] >> i) & 1) + 48;
+			buf[x++] = ((bytestream[len - 1] >> i) & 1) + 48;
 			i--;
 		}
-		*out[x++] = ' ';
+		if (len > 1)
+			buf[x++] = ' ';
 		len--;
 	}
+	*out = buf;
 	return (FT_SSL_OK);
 }
