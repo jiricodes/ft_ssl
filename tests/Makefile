@@ -5,29 +5,24 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/03 12:25:50 by jnovotny         ###   ########.fr        #
+#    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
+#    Updated: 2021/03/03 12:18:22 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ft_ssl
+NAME = ft_ssl_test
 CC ?= gcc
 
-INCLUDES = -I includes/
+INCLUDES = -I ../includes/
 
 CFLAGS = 
 
-LDFLAGS = 
-
-SRC_FILES =	error.c \
-			main.c \
+SOURCES =	test.c \
+			error.c \
 			utils_print.c \
 			utils_string.c
 
-SOURCES_DIR = sources
-SOURCES = $(addprefix $(SOURCES_DIR)/, $(SRC_FILES))
-
-OBJECTS = $(SOURCES:.c=.o)
+SOURCES_DIR = ../sources
 
 .PHONY: all $(NAME) clean fclean re
 
@@ -36,16 +31,16 @@ all: $(NAME)
 %.o: %.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-$(NAME): $(OBJECTS)
-	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
+$(NAME):
+	@echo "Compiling $(NAME)"
 
-test:
-	make -C tests
+run:
+	./$(NAME)
 
 clean:
-	rm $(OBJECTS)
+	@echo "clean"
 
 fclean: clean
-	rm $(NAME)
+	@echo "fclean"
 
 re: fclean all

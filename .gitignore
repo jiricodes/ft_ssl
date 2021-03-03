@@ -1,0 +1,4 @@
+.vscode/
+*.o
+ft_ssl
+tests/ft_ssl_test

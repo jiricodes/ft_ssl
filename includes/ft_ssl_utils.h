@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 11:52:34 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 12:24:37 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 */
 
 # include <unistd.h>
+# include <stdlib.h>
 # include <inttypes.h>
 # include "ft_ssl_error.h"
 

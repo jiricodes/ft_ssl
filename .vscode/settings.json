@@ -1,6 +1,0 @@
-{
-	"files.associations": {
-		"unistd.h": "c",
-		"ft_ssl_error.h": "c"
-	}
-}

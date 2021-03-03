@@ -6,11 +6,19 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:25:32 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 11:52:56 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/03 11:58:41 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** Includes ********************************************************************
+*/
+
 #include "ft_ssl_utils.h"
+
+/*
+** Functions *******************************************************************
+*/
 
 /*
 ** @brief	Converts input stream of bytes into string of bits values.
