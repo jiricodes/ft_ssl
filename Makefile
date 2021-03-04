@@ -6,14 +6,16 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/03 20:02:51 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 09:50:51 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ssl
 CC ?= gcc
 
-INCLUDES = -I includes/
+INC_DIR = includes
+
+INCLUDES = -I $(INC_DIR)/
 
 CFLAGS = 
 
@@ -30,6 +32,8 @@ SOURCES = $(addprefix $(SOURCES_DIR)/, $(SRC_FILES))
 
 OBJECTS = $(SOURCES:.c=.o)
 
+NORM_CMD ?= ~/.norminette/norminette.rb
+
 .PHONY: all $(NAME) clean fclean re
 
 all: $(NAME)
@@ -43,8 +47,14 @@ $(NAME): $(OBJECTS)
 test:
 	make -C tests
 
-test-verb:
+test-verb: norm check-forbidden
 	make -C tests VERB=1
+
+norm:
+	@./tests/scripts/check_norm.sh $(NORM_CMD) $(SOURCES_DIR) $(INC_DIR)
+
+check-forbidden:
+	@./tests/scripts/check_forbidden.sh $(SOURCES_DIR) $(INC_DIR)
 
 clean:
 	-rm $(OBJECTS)

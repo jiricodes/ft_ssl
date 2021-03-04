@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/03 21:23:55 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 09:55:15 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,13 +71,13 @@ run:
 	./$(NAME)
 
 clean:
-	-rm $(OBJECTS)
-	-rm $(GEN_SRCS)
-	-rm $(TEST_FILES)
-	-rm files/$(TEST_FILES)
-	-rm scripts/$(TEST_FILES)
+	-@rm $(OBJECTS) 2> /dev/null || true
+	-@rm $(GEN_SRCS) 2> /dev/null || true
+	-@rm $(TEST_FILES) 2> /dev/null || true
+	-@rm files/$(TEST_FILES) 2> /dev/null || true
+	-@rm scripts/$(TEST_FILES) 2> /dev/null || true
 
 fclean: clean
-	-rm $(NAME)
+	-@rm $(NAME) 2> /dev/null || true
 
 re: fclean all
