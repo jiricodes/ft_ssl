@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 14:13:13 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:21:42 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ static const t_cmds		g_cmdlist[] = {
 /*
 ** Functions  ******************************************************************
 */
+
 static void		print_cmds(enum e_cmd_type t)
 {
 	int i;
@@ -58,7 +59,7 @@ static void		print_cmds(enum e_cmd_type t)
 	}
 }
 
-void			usage()
+void			usage(void)
 {
 	ft_putstr_fd(USAGE, ft_strlen(USAGE), STDOUT_FILENO);
 	ft_putstr_fd(STD_CMD_STR, ft_strlen(STD_CMD_STR), STDOUT_FILENO);

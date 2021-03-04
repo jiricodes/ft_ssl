@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 14:13:02 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:19:04 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct		s_ft_ssl_error
 	char			*additional_information;
 }					t_ft_ssl_error_info;
 
-
-void	error_exit(t_ft_ssl_error e, char *arg, void (*f)(void));
+void				error_exit(t_ft_ssl_error e, char *arg, void (*f)(void));
 
 #endif
