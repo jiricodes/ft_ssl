@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl_error.h                                     :+:      :+:    :+:   */
+/*   ft_ssl_hash.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 13:32:27 by jnovotny         ###   ########.fr       */
+/*   Created: 2021/03/04 12:56:58 by jnovotny          #+#    #+#             */
+/*   Updated: 2021/03/04 13:11:15 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_ERROR_H
-# define FT_SSL_ERROR_H
+#ifndef FT_SSL_HASH_H
+# define FT_SSL_HASH_H
 
-typedef enum		e_ft_ssl_error
-{
-	FT_SSL_OK,
-	FT_SSL_UNDEFINED,
-	FT_SSL_WRITE_FAIL,
-	FT_SSL_MALLOC_FAIL,
-	FT_SSL_INVALID_COMMAND,
-	FT_SSL_INVALID_ARGUMENT
-}					t_ft_ssl_error;
-
-typedef struct		s_ft_ssl_error
-{
-	t_ft_ssl_error	error_id;
-	char			*error_message;
-	char			*additional_information;
-}					t_ft_ssl_error_info;
+int		hash_main(int argc, char **argv);
 
 #endif

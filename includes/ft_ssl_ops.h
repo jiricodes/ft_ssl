@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ssl_error.h                                     :+:      :+:    :+:   */
+/*   ft_ssl_ops.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 13:32:27 by jnovotny         ###   ########.fr       */
+/*   Created: 2021/03/04 12:41:44 by jnovotny          #+#    #+#             */
+/*   Updated: 2021/03/04 13:24:01 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_SSL_ERROR_H
-# define FT_SSL_ERROR_H
+#ifndef FT_SSL_OPS_H
+# define FT_SSL_OPS_H
 
-typedef enum		e_ft_ssl_error
-{
-	FT_SSL_OK,
-	FT_SSL_UNDEFINED,
-	FT_SSL_WRITE_FAIL,
-	FT_SSL_MALLOC_FAIL,
-	FT_SSL_INVALID_COMMAND,
-	FT_SSL_INVALID_ARGUMENT
-}					t_ft_ssl_error;
+typedef int			(*t_cmd_fnc)(int argc, char **argv);
 
-typedef struct		s_ft_ssl_error
+enum				e_cmd_type
 {
-	t_ft_ssl_error	error_id;
-	char			*error_message;
-	char			*additional_information;
-}					t_ft_ssl_error_info;
+	CMD_NONE,
+	CMD_STD,
+	CMD_HASH,
+	CMD_CIPH
+};
+
+typedef struct		s_cmd_dict
+{
+	const char		*name;
+	enum e_cmd_type	cmd_type;
+	t_cmd_fnc		cmd_fnc;
+}					t_cmds;
 
 #endif

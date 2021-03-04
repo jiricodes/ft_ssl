@@ -1,2 +1,5 @@
 printf
+sprintf
 stdio.h
+fopen
+fread
