@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 15:49:40 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 16:25:11 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC ?= gcc
 
 INC_DIR = includes
 
-INCLUDES = -I $(INC_DIR)/
+INCLUDES = -I $(INC_DIR)/ -I libft/includes
 
 CFLAGS = 
 

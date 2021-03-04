@@ -6,14 +6,14 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 14:03:55 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 16:27:07 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ssl_test
 CC ?= gcc
 
-INCLUDES = -I ../includes/
+INCLUDES = -I ../includes/ -I ../libft/includes
 
 CFLAGS = 
 
@@ -21,7 +21,7 @@ ifdef VERB
 CFLAGS += -DVERBOSE=1
 endif
 
-LDFLAGS = 
+LDFLAGS = -L ../libft -lft
 
 SRC_FILES =	error.c \
 			hash.c \
@@ -55,7 +55,7 @@ TEST_FILES =	result \
 
 OBJECTS = $(SOURCES:.c=.o)
 
-.PHONY: all $(NAME) clean fclean re
+.PHONY: all clean fclean re
 
 all: build run
 
@@ -68,10 +68,11 @@ gen-files:
 
 build:
 	make gen-files
+	make -C ../libft
 	make $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LDFLAGS)
 
 run:
 	./$(NAME)

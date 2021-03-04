@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 14:21:42 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:13:35 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,24 +49,19 @@ static void		print_cmds(enum e_cmd_type t)
 	while (g_cmdlist[i].name)
 	{
 		if (t == g_cmdlist[i].cmd_type)
-		{
-			ft_putstr_fd(g_cmdlist[i].name, \
-						ft_strlen(g_cmdlist[i].name), \
-						STDOUT_FILENO);
-			ft_putchar_fd('\n', STDOUT_FILENO);
-		}
+			ft_printf("%s\n", g_cmdlist[i].name);
 		i++;
 	}
 }
 
 void			usage(void)
 {
-	ft_putstr_fd(USAGE, ft_strlen(USAGE), STDOUT_FILENO);
-	ft_putstr_fd(STD_CMD_STR, ft_strlen(STD_CMD_STR), STDOUT_FILENO);
+	ft_printf(USAGE);
+	ft_printf(STD_CMD_STR);
 	print_cmds(CMD_STD);
-	ft_putstr_fd(HASH_CMD_STR, ft_strlen(HASH_CMD_STR), STDOUT_FILENO);
+	ft_printf(HASH_CMD_STR);
 	print_cmds(CMD_HASH);
-	ft_putstr_fd(CIPH_CMD_STR, ft_strlen(CIPH_CMD_STR), STDOUT_FILENO);
+	ft_printf(CIPH_CMD_STR);
 	print_cmds(CMD_CIPH);
 }
 
