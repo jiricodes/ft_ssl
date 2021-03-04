@@ -10,6 +10,10 @@ fb=$1
 ret=0
 declare -i i=0
 
+C_GREEN="\033[32m"
+C_RED="\033[31m"
+C_EOC="\033[0m"
+
 check_details()
 {
 	d=$1
@@ -24,9 +28,9 @@ check_details()
 	done
 }
 
-SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+# SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-fb=$SCRIPTPATH"/forbidden_list"
+# fb=$SCRIPTPATH"/forbidden_list"
 
 for a in "$@"
 do
@@ -35,11 +39,11 @@ do
 		c=$(cat $a/* | grep -f $fb -c)
 		if [ "$c" -ne 0 ]
 		then
-			echo "$a:"
+			echo -e "$a: ${C_RED}Fail$C_EOC"
 			check_details $a
 			ret=1
 		else
-			echo "$a: Clean"
+			echo -e "$a: ${C_GREEN}Clean$C_EOC"
 		fi
 	else
 		i=1

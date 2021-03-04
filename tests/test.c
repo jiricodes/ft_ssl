@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 21:26:32 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 10:24:58 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1458,7 +1458,7 @@ static void	unittest_binstr()
 int			main(void)
 {
 	if (VERBOSE)
-		printf("UNIT TEST FOR FT_SSL\n");
+		printf(COLOR_BLUE"UNIT TEST FOR FT_SSL\n"EOC);
 	unittest_binstr();
 	unittest_hexstr();
 	unittest_leftshift();

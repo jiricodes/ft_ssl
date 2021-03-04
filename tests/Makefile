@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 09:55:15 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 10:21:02 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,15 +56,20 @@ OBJECTS = $(SOURCES:.c=.o)
 
 .PHONY: all $(NAME) clean fclean re
 
-all: $(NAME) run
+all: build run
 
 gen-files:
 	./scripts/create_list_md5funcs.sh $(GEN_N) $(GEN_MD5_PREFIX)
+	@sleep 1
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-$(NAME): gen-files $(OBJECTS)
+build:
+	make gen-files
+	make $(NAME)
+
+$(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
 
 run:
@@ -81,3 +86,7 @@ fclean: clean
 	-@rm $(NAME) 2> /dev/null || true
 
 re: fclean all
+
+print:
+	@echo "$(SOURCES)"
+	@echo "$(OBJECTS)"

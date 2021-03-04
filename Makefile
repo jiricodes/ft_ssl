@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 09:50:51 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 10:21:58 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,10 @@ OBJECTS = $(SOURCES:.c=.o)
 
 NORM_CMD ?= ~/.norminette/norminette.rb
 
+C_BLUE=\033[34m
+C_EOC=\033[0m
+
+
 .PHONY: all $(NAME) clean fclean re
 
 all: $(NAME)
@@ -44,22 +48,35 @@ all: $(NAME)
 $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
 
-test:
-	make -C tests
+test: norm-silent check-forbidden-silent
+	@make -C tests
 
 test-verb: norm check-forbidden
-	make -C tests VERB=1
+	@echo "$(C_BLUE)Running UNITTEST$(C_EOC)"
+	@make -C tests VERB=1
 
 norm:
+	@echo "$(C_BLUE)Norminette check$(C_EOC)"
 	@./tests/scripts/check_norm.sh $(NORM_CMD) $(SOURCES_DIR) $(INC_DIR)
+	@echo ""
+
+norm-silent:
+	@make norm > /dev/null
 
 check-forbidden:
-	@./tests/scripts/check_forbidden.sh $(SOURCES_DIR) $(INC_DIR)
+	@echo "$(C_BLUE)Forbidden functions check$(C_EOC)"
+	@./tests/scripts/check_forbidden.sh tests/files/forbidden_list $(SOURCES_DIR) $(INC_DIR)
+	@echo ""
+
+check-forbidden-silent:
+	@make check-forbidden > /dev/null
 
 clean:
-	-rm $(OBJECTS)
+	-@make clean -C tests || true
+	-@rm $(OBJECTS) 2> /dev/null || true
 
 fclean: clean
-	-rm $(NAME)
+	-@make fclean -C tests || true
+	-@rm $(NAME) 2> /dev/null || true
 
 re: fclean all

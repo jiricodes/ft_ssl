@@ -6,14 +6,11 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 10:29:46 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 09:59:28 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	main(int argc, char **argv)
 {
-    // parse input
-    // process
-    // output
-    // exit
+	return (0);
 }
