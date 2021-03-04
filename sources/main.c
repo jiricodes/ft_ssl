@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 16:13:35 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:37:49 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,25 @@ void			usage(void)
 	print_cmds(CMD_CIPH);
 }
 
+static int		console(void)
+{
+	ft_printf("Console mode not implemented!\n");
+	return (0);
+}
+
 int				main(int argc, char **argv)
 {
+	int		i;
+
 	if (argc < 2)
+		return(console());
+	i = 0;
+	while (g_cmdlist[i].name && argv[1])
 	{
-		usage();
-		return (FT_SSL_INVALID_COMMAND);
+		if (ft_strequ(g_cmdlist[i].name, argv[1]))
+			return (g_cmdlist[i].cmd_fnc(argc - 1, argv + 1));
+		i++;
 	}
-	error_exit(FT_SSL_INVALID_COMMAND, "foo", &usage);
+	error_exit(FT_SSL_INVALID_COMMAND, argv[1], &usage);
 	return (0);
 }
