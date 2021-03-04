@@ -19,12 +19,20 @@ check_details()
 	d=$1
 	for f in $d/*
 	do
-		echo -e "\t$f:"
-		while read p
-		do
-			c=$(cat $f | grep -c $p)
-			echo -e "\t\t$p: $c"
-		done < $fb
+		c=$(cat $f | grep -f $fb -c)
+		if (( $c!=0 ))
+		then
+			echo -e "\t$f:"
+			while read p
+			do
+				r=$(cat $f | grep -n $p)
+				if [[ ! -z $r ]]
+				then
+					echo -ne "\t\t"
+					echo "$r"
+				fi
+			done < $fb
+		fi
 	done
 }
 

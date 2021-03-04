@@ -1,5 +1,4 @@
-printf
-sprintf
-stdio.h
-fopen
-fread
+[[:space:]]printf(
+[[:space:]]sprintf
+[[:space:]]fopen
+[[:space:]]fread

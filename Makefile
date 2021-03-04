@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 14:03:31 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 15:49:40 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ INCLUDES = -I $(INC_DIR)/
 
 CFLAGS = 
 
-LDFLAGS = 
+LDFLAGS = -L libft -lft
+
+LIBFT = libft/libft.a
 
 SRC_FILES =	error.c \
 			hash.c \
@@ -36,19 +38,27 @@ OBJECTS = $(SOURCES:.c=.o)
 
 NORM_CMD ?= ~/.norminette/norminette.rb
 
+LIBFT_DIRS =	libft/includes \
+				libft/sources/error_srcs \
+				libft/sources/libft_srcs \
+				libft/sources/pf_srcs
+
 C_BLUE=\033[34m
 C_EOC=\033[0m
 
 
-.PHONY: all $(NAME) clean fclean re
+.PHONY: all clean fclean re
 
 all: $(NAME)
+
+$(LIBFT):
+	make -C libft
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
-$(NAME): $(OBJECTS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJECTS)
+$(NAME): $(LIBFT) $(OBJECTS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LDFLAGS)
 
 test: norm-silent check-forbidden-silent
 	@make -C tests
@@ -59,7 +69,7 @@ test-verb: norm check-forbidden
 
 norm:
 	@echo "$(C_BLUE)Norminette check$(C_EOC)"
-	@./tests/scripts/check_norm.sh $(NORM_CMD) $(SOURCES_DIR) $(INC_DIR)
+	@./tests/scripts/check_norm.sh $(NORM_CMD) $(SOURCES_DIR) $(INC_DIR) $(LIBFT_DIRS)
 	@echo ""
 
 norm-silent:
@@ -67,7 +77,7 @@ norm-silent:
 
 check-forbidden:
 	@echo "$(C_BLUE)Forbidden functions check$(C_EOC)"
-	@./tests/scripts/check_forbidden.sh tests/files/forbidden_list $(SOURCES_DIR) $(INC_DIR)
+	@./tests/scripts/check_forbidden.sh tests/files/forbidden_list $(SOURCES_DIR) $(INC_DIR) $(LIBFT_DIRS)
 	@echo ""
 
 check-forbidden-silent:
@@ -75,10 +85,12 @@ check-forbidden-silent:
 
 clean:
 	-@make clean -C tests || true
+	-@make clean -C libft || true
 	-@rm $(OBJECTS) 2> /dev/null || true
 
 fclean: clean
 	-@make fclean -C tests || true
+	-@make fclean -C libft || true
 	-@rm $(NAME) 2> /dev/null || true
 
 re: fclean all
