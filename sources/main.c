@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 13:32:53 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:13:13 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int				main(int argc, char **argv)
 		usage();
 		return (FT_SSL_INVALID_COMMAND);
 	}
+	error_exit(FT_SSL_INVALID_COMMAND, "foo", &usage);
 	return (0);
 }

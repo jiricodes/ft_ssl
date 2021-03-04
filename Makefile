@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 10:21:58 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/04 14:03:31 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ CFLAGS =
 LDFLAGS = 
 
 SRC_FILES =	error.c \
+			hash.c \
 			main.c \
+			md5_functions.c \
 			utils_bits.c \
 			utils_print.c \
 			utils_string.c

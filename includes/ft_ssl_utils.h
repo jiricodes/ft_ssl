@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 10:00:15 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:09:38 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 */
 
 int			ft_putchar_fd(char c, int fd);
-int			ft_putstr_fd(char *buffer, size_t len, int fd);
-size_t		ft_strlen(char *buffer);
+int			ft_putstr_fd(const char *buffer, size_t len, int fd);
+size_t		ft_strlen(const char *buffer);
 int			ft_to_binstr(
 				uint8_t *bytestream,
 				size_t len,

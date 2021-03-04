@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:47:22 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 13:32:27 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:13:02 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum		e_ft_ssl_error
 	FT_SSL_WRITE_FAIL,
 	FT_SSL_MALLOC_FAIL,
 	FT_SSL_INVALID_COMMAND,
-	FT_SSL_INVALID_ARGUMENT
+	FT_SSL_INVALID_ARGUMENT,
+	FT_SSL_INVALID_ERROR = 0xFF
 }					t_ft_ssl_error;
 
 typedef struct		s_ft_ssl_error
@@ -29,5 +30,8 @@ typedef struct		s_ft_ssl_error
 	char			*error_message;
 	char			*additional_information;
 }					t_ft_ssl_error_info;
+
+
+void	error_exit(t_ft_ssl_error e, char *arg, void (*f)(void));
 
 #endif

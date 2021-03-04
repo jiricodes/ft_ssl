@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 10:52:28 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/03 18:52:16 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/04 14:09:15 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_putchar_fd(char c, int fd)
 	return (FT_SSL_OK);
 }
 
-int		ft_putstr_fd(char *buffer, size_t len, int fd)
+int		ft_putstr_fd(const char *buffer, size_t len, int fd)
 {
 	int ret;
 
@@ -40,16 +40,13 @@ int		ft_putstr_fd(char *buffer, size_t len, int fd)
 	return (FT_SSL_OK);
 }
 
-size_t	ft_strlen(char *buffer)
+size_t	ft_strlen(const char *buffer)
 {
 	size_t len;
 
 	len = 0;
-	while (*buffer != 0)
-	{
+	while (buffer[len] != '\0')
 		len++;
-		buffer++;
-	}
 	return (len);
 }
 
