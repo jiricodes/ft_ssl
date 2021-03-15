@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 10:52:28 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 16:23:50 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/12 18:20:12 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,22 @@ int		ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd)
 	}
 	free(hexstr);
 	return (FT_SSL_OK);
+}
+
+void	ft_print_fmt_block(const char *buf)
+{
+	size_t	i;
+	size_t	len;
+
+	len = ft_strlen(buf);
+	i = 0;
+	while (i < len)
+	{
+		ft_printf("%.8s", &buf[i]);
+		i += 8;
+		if (i >= len || i % 32 == 0)
+			ft_printf("\n");
+		else
+			ft_printf(" ");
+	}
 }

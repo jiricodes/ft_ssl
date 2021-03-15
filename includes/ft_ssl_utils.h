@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 16:09:04 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/12 18:20:48 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ int			ft_to_hexstr(
 				char **out,
 				size_t *out_len);
 uint32_t	ft_uint32_left_circular_shift(uint32_t	input, size_t shift);
+void		ft_print_fmt_block(const char *buf);
 #endif
