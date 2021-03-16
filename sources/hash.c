@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/15 20:31:49 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/16 20:24:36 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,26 @@ int		hash_main(int argc, char **argv)
 		ft_bzero(&block, sizeof(t_md5_block));
 		ssize_t len = strlen(argv[1]);
 		ret = 0;
+		ft_printf("Input: %s\nLength: %lu\n", argv[1], len);
 		while (ret < len)
 		{
 			tmp = pad_test(argv[1] + ret, len - ret, &state.block);
+			out = NULL;
+			out_size = 0;
+			if ((err = ft_to_hexstr((uint8_t *)&state.block, MD5_BLOCK_SIZE, &out, &out_size)) != FT_SSL_OK)
+				return (err);
+			ft_print_fmt_block(out);
+			free(out);
 			err = md5_block(&state);
 			ret += tmp;
 		}
+		out = NULL;
+		out_size = 0;
+		if ((err = ft_to_hexstr((uint8_t *)&state.bufs, MD5_OUT_SIZE, &out, &out_size)) != FT_SSL_OK)
+			return (err);
+		ft_printf("Result: ");
+		ft_print_fmt_block(out);
+		free(out);
 		return (0);
 	}
 	ft_printf("\nNot implemented!\n");
