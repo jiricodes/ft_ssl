@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/15 15:33:37 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/15 20:31:49 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,72 +63,38 @@ int 	pad_test(uint8_t *buffer, size_t buffer_len, t_md5_block *block)
 
 int		md5_init(t_md5_state *state)
 {
-	//allocate
-	//set values for init and current (one by one faster than memcpy)
-	// word A: 0x67452301
-    // word B: 0xefcdab89
-    // word C: 0x98badcfe
-    // word D: 0x10325476
-	// fnc = f
-	//
-	state = (t_md5_state *)ft_memalloc(sizeof(t_md5_state));
-	if (!state)
-		return (FT_SSL_MALLOC_FAIL);
-	state->init.four[0] = 0x67452301;
-	state->init.four[1] = 0xefcdab89;
-	state->init.four[2] = 0x98badcfe;
-	state->init.four[3] = 0x10325476;
-	state->current.four[0] = 0x67452301;
-	state->current.four[1] = 0xefcdab89;
-	state->current.four[2] = 0x98badcfe;
-	state->current.four[3] = 0x10325476;
-	state->fnc = ft_md5_f;
-	state->buf = NULL;
-	state->buf_size = 0;
-	ft_bzero(&state->props, sizeof(t_md5_props));
+		state->bufs.four[0] = 0x67452301;
+		state->bufs.four[1] = 0xefcdab89;
+		state->bufs.four[2] = 0x98badcfe;
+		state->bufs.four[3] = 0x10325476;
 	return (FT_SSL_OK);
 }
 
 int		hash_main(int argc, char **argv)
 {
 	t_md5_block	block;
+	t_md5_state	state;
 	char		*out;
 	size_t		out_size;
 	int			ret;
 	int			tmp;
 	int			err;
 
+	md5_init(&state);
 	uint8_t	test[5] = {0b01100001, 0b01100010, 0b01100011, 0b01100100, 0b01100101};
 	if (argc > 1)
 	{
 		ft_bzero(&block, sizeof(t_md5_block));
-		ssize_t len = 5;
+		ssize_t len = strlen(argv[1]);
 		ret = 0;
 		while (ret < len)
 		{
-			tmp = pad_test(test + ret, len - ret, &block);
-			out = NULL;
-			out_size = 0;
-			if ((err = ft_to_hexstr((uint8_t *)&block, MD5_BLOCK_SIZE, &out, &out_size)) != FT_SSL_OK)
-				return (err);
-			for (int x =0; x < 16; x++)
-			{
-				ft_printf("%ld\n", block.x[x]);
-			}
+			tmp = pad_test(argv[1] + ret, len - ret, &state.block);
+			err = md5_block(&state);
 			ret += tmp;
-			ft_print_fmt_block(out);
 		}
-		
 		return (0);
 	}
 	ft_printf("\nNot implemented!\n");
-	
-
-	ft_printf("%u %u %u %u %u | %u\n", \
-		sizeof(t_md5_block), \
-		sizeof(ft_round), \
-		sizeof(uint8_t*), \
-		sizeof(size_t), \
-		sizeof(t_md5_props), \
-		sizeof(t_md5_state));
+	ft_printf("%u\n", sizeof(t_md5_state));
 }

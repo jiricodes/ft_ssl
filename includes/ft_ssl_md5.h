@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:09:45 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/15 16:07:31 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/15 20:24:21 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 # include <inttypes.h>
 # include <string.h>
+# include "ft_ssl_error.h"
+# include "ft_ssl_utils.h"
+# include "libft.h"
 
 /*
 ** Defines *********************************************************************
@@ -45,28 +48,10 @@ typedef union	u_md5_block
 	uint32_t	x[MD5_BLOCK_SIZE / 4];
 }				t_md5_block;
 
-typedef struct s_md5_properties
-{
-	int			k;
-	int			i;
-	int			s;
-}				t_md5_props;
-
-/*
-** @brief	should be fixed to 64bytes size
-** 			currently 72
-** 
-** 
-*/
-
 typedef struct	s_ft_ssl_md5_state
 {
-	t_md5_buffers	init; // init can be also outcome?
-	t_md5_buffers	current;
-	ft_round		fnc;
-	uint8_t			*buf;
-	size_t			buf_size;
-	t_md5_props		props;
+	t_md5_buffers	bufs;
+	t_md5_block		block;
 }				t_md5_state;
 
 typedef struct s_ft_ssl_md5_operation
@@ -87,5 +72,6 @@ uint32_t	ft_md5_f(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	ft_md5_g(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	ft_md5_h(uint32_t b, uint32_t c, uint32_t d);
 uint32_t	ft_md5_i(uint32_t b, uint32_t c, uint32_t d);
+int			md5_block(t_md5_state *state);
 
 #endif
