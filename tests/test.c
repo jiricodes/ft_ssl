@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 15:48:44 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 16:01:09 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1475,7 +1475,7 @@ static void unittest_md5_one(char *str, char *expected, int *current, int total)
 static void unittest_md5()
 {
 	int current = 0;
-	int total = 7;
+	int total = 166;
 
 	CATEGORY("md5");
 	unittest_md5_one("", "d41d8cd98f00b204e9800998ecf8427e", &current, total);

@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/17 12:34:56 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 16:00:51 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC ?= gcc
 
 INCLUDES = -I ../includes/ -I ../libft/includes
 
-CFLAGS = 
+CFLAGS = -DDEBUG=0 -DLOG=0
 
 ifdef VERB
 CFLAGS += -DVERBOSE=1
