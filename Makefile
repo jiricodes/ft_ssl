@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/15 20:16:36 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 11:56:34 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,12 @@ check-forbidden:
 
 check-forbidden-silent:
 	@make check-forbidden > /dev/null
+
+GIT_COMMENT ?= "autosave"
+git-autosave:
+	@git add .
+	@git commit -m $(GIT_COMMENT)
+	git push
 
 clean:
 	-@make clean -C tests || true
