@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 12:14:49 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 15:58:55 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,32 +23,47 @@
 ** Functions  ******************************************************************
 */
 
-static void				md5_pad(uint8_t *buffer, size_t buffer_len,
+static int				md5_pad(uint8_t *buffer, ssize_t buffer_len,
 								t_md5_block *block)
 {
 	static int64_t	total_len;
+	int ret;
+	static int padded;
 
+	ret = 1;
 	ft_bzero(block, MD5_BLOCK_SIZE);
+	if (DEBUG)
+		ft_printf("%llu | pad %d\n", buffer_len, padded);
 	if (buffer_len >= MD5_BLOCK_SIZE)
 	{
 		ft_memcpy(block, buffer, MD5_BLOCK_SIZE);
 		total_len += MD5_BLOCK_SIZE;
 	}
-	else if (buffer_len > MD5_PAD_REM)
-	{
-		ft_memcpy(block, buffer, buffer_len);
-		block->xp[buffer_len] = 0b10000000;
-		total_len += buffer_len;
-	}
 	else
 	{
-		ft_memcpy(block, buffer, buffer_len);
-		block->xp[buffer_len] = 0b10000000;
-		total_len += buffer_len;
-		total_len *= 8;
-		ft_memcpy(&block->x[14], &total_len, 8);
-		ft_printf("Total len = %llu\n", total_len);
+		if (buffer_len > 0 && !padded)
+		{
+			ft_memcpy(block, buffer, buffer_len);
+			block->xp[buffer_len] = 0b10000000;
+			total_len += buffer_len;
+		}
+		else if (!padded)
+			block->xp[0] = 0b10000000;
+		padded = 1;
+		if (buffer_len < MD5_PAD_REM)
+		{
+			total_len *= 8;
+			ft_memcpy(&block->x[14], &total_len, 8);
+			if (DEBUG)
+				ft_printf("Total len = %llu\n", total_len);
+			total_len = 0;
+			ret = 0;
+			padded = 0;
+		}
 	}
+	if (DEBUG)
+		ft_printf("ret = %d | pad %d\n", ret, padded);
+	return (ret);
 }
 
 static void				md5_init(t_md5_state *state)
@@ -61,24 +76,27 @@ static void				md5_init(t_md5_state *state)
 
 static t_ft_ssl_error	md5_loop(
 	uint8_t *input,
-	size_t input_length,
+	ssize_t input_length,
 	t_md5_state *state)
 {
-	size_t			i;
+	ssize_t			i;
 	t_ft_ssl_error	err;
+	int				run;
 
 	i = 0;
-	ft_printf("Input: %s\nLength: %lu\n", input, input_length);
-	while (i <= input_length)
+	run = 1;
+	if (DEBUG)
+		ft_printf("Input: %s\nLength: %lu\n", input, input_length);
+	while (run)
 	{
-		md5_pad(input + i, input_length - i, &state->block);
+		run = md5_pad(input + i, input_length - i, &state->block);
 		if (DEBUG)
 		{
-			err = print_fmt((uint8_t *)&state->block, MD5_BLOCK_SIZE);
+			err = uint8_print_fmt((uint8_t *)&state->block, MD5_BLOCK_SIZE);
 			if (err != FT_SSL_OK)
 				return (err);
 		}
-		err = md5_block(&state);
+		err = md5_block(state);
 		if (err != FT_SSL_OK)
 			return (err);
 		i += MD5_BLOCK_SIZE;

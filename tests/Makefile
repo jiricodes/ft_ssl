@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/04 16:27:07 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 12:34:56 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ LDFLAGS = -L ../libft -lft
 SRC_FILES =	error.c \
 			hash.c \
 			md5_functions.c \
+			md5_main.c \
+			md5_round.c \
 			utils_bits.c \
 			utils_print.c \
 			utils_string.c

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 12:16:04 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:40:49 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int		hash_main(int argc, char **argv)
 		{
 			out = md5_main(argv[1], ft_strlen(argv[1]));
 		}
-		ft_printf("Result: ");
-		ft_print_fmt_block(out);
+		ft_printf("%s\n", out);
 		free(out);
 		return (0);
 	}
