@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/17 11:56:34 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 12:22:56 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_FILES =	error.c \
 			hash.c \
 			main.c \
 			md5_functions.c \
+			md5_main.c \
 			md5_round.c \
 			utils_bits.c \
 			utils_print.c \

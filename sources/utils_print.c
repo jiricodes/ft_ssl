@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 10:52:28 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 11:50:48 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:17:05 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void				ft_print_fmt_block(const char *buf)
 
 t_ft_ssl_error		uint8_print_fmt(uint8_t *buffer, size_t buffer_size)
 {
-	char		*out;
-	size_t		out_size;
+	char			*out;
+	size_t			out_size;
 	t_ft_ssl_error	err;
 
 	err = FT_SSL_OK;

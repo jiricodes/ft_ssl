@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:56:58 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/12 19:28:09 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:20:01 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <inttypes.h>
 # include <string.h>
-
 
 int		hash_main(int argc, char **argv);
 

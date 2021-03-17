@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 16:37:49 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:19:39 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				main(int argc, char **argv)
 	int		i;
 
 	if (argc < 2)
-		return(console());
+		return (console());
 	i = 0;
 	while (g_cmdlist[i].name && argv[1])
 	{

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/15 15:34:44 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 11:42:56 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 12:19:27 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ static const t_md5_op	g_op[64] = {
 ** Functions  ******************************************************************
 */
 
-
 static void		md5_do_op(
 	t_md5_buffers *bufs,
 	t_md5_block *block,
@@ -125,27 +124,20 @@ int				md5_block(t_md5_state *state)
 {
 	t_md5_buffers	buffers;
 	uint8_t			i;
-	char		*out;
-	size_t		out_size;
-	int			err;
 
 	buffers.four[0] = state->bufs.four[0];
 	buffers.four[1] = state->bufs.four[1];
 	buffers.four[2] = state->bufs.four[2];
 	buffers.four[3] = state->bufs.four[3];
-	ft_printf("A=%u, B=%u, C=%u, D=%u\n", buffers.four[0], buffers.four[1], buffers.four[2], buffers.four[3]);
-	ft_printf("Block:\n");
-	for (int test=0; test < 16; test++)
-	{
-		ft_printf("[%d]%u\n",test, state->block.x[test]);
-	}
 	i = 0;
 	while (i < 64)
 	{
 		md5_do_op(&buffers, &state->block, &g_op[i]);
 		if (LOG)
 		{
-			ft_printf("%02u: A=%u, B=%u, C=%u, D=%u\n", i, buffers.four[0], buffers.four[1], buffers.four[2], buffers.four[3]);
+			ft_printf("%02u: A=%u, B=%u, C=%u, D=%u\n",
+				i, buffers.four[0], buffers.four[1],
+				buffers.four[2], buffers.four[3]);
 		}
 		i++;
 	}
