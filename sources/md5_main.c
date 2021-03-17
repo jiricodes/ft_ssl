@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   md5_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 11:48:02 by jnovotny         ###   ########.fr       */
+/*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
+/*   Updated: 2021/03/17 11:46:46 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,30 +89,4 @@ char	*md5_main(uint8_t *input, size_t input_length)
 	if ((err = ft_to_hexstr((uint8_t *)&state.bufs, MD5_OUT_SIZE, &out, &out_size)) != FT_SSL_OK)
 		return (NULL);
 	return (out);
-}
-
-int		hash_main(int argc, char **argv)
-{
-	t_md5_block	block;
-	t_md5_state	state;
-	char		*out;
-	size_t		out_size;
-	int			ret;
-	int			tmp;
-	int			err;
-
-	if (argc > 1)
-	{
-		out = NULL;
-		if (ft_strequ(argv[0], "md5"))
-		{
-			out = md5(argv[1], ft_strlen(argv[1]));
-		}
-		ft_printf("Result: ");
-		ft_print_fmt_block(out);
-		free(out);
-		return (0);
-	}
-	ft_printf("\nNot implemented!\n");
-	ft_printf("%u\n", sizeof(t_md5_state));
 }

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/12 18:20:48 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 11:50:32 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@
 ** Function Prototypes *********************************************************
 */
 
-int			ft_to_binstr(
-				uint8_t *bytestream,
-				size_t len,
-				char **out,
-				size_t *out_len);
-int			ft_to_hexstr(
-				uint8_t *bytestream,
-				size_t len,
-				char **out,
-				size_t *out_len);
-uint32_t	ft_uint32_left_circular_shift(uint32_t	input, size_t shift);
-void		ft_print_fmt_block(const char *buf);
+int				ft_to_binstr(
+					uint8_t *bytestream,
+					size_t len,
+					char **out,
+					size_t *out_len);
+int				ft_to_hexstr(
+					uint8_t *bytestream,
+					size_t len,
+					char **out,
+					size_t *out_len);
+uint32_t		ft_uint32_left_circular_shift(uint32_t	input, size_t shift);
+void			ft_print_fmt_block(const char *buf);
+t_ft_ssl_error	uint8_print_fmt(uint8_t *buffer, size_t buffer_size);
+t_ft_ssl_error	ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd);
+t_ft_ssl_error	ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd);
 #endif
