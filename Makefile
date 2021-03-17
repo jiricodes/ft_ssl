@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/17 16:36:21 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 21:11:01 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,6 +94,7 @@ check-forbidden-silent:
 
 GIT_COMMENT ?= "autosave"
 git-autosave:
+	make fclean
 	@git add .
 	@git commit -m $(GIT_COMMENT)
 	git push

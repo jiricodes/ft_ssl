@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 10:52:28 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 12:17:05 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 20:57:06 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** Functions *******************************************************************
 */
 
-t_ft_ssl_error		ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd)
+t_ft_ssl_status		ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd)
 {
 	char	*bitstr;
 	size_t	bitlen;
@@ -37,7 +37,7 @@ t_ft_ssl_error		ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd)
 	return (FT_SSL_OK);
 }
 
-t_ft_ssl_error		ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd)
+t_ft_ssl_status		ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd)
 {
 	char	*hexstr;
 	size_t	hexlen;
@@ -72,11 +72,11 @@ void				ft_print_fmt_block(const char *buf)
 	}
 }
 
-t_ft_ssl_error		uint8_print_fmt(uint8_t *buffer, size_t buffer_size)
+t_ft_ssl_status		uint8_print_fmt(uint8_t *buffer, size_t buffer_size)
 {
 	char			*out;
 	size_t			out_size;
-	t_ft_ssl_error	err;
+	t_ft_ssl_status	err;
 
 	err = FT_SSL_OK;
 	out = NULL;

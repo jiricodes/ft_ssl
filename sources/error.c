@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:26:39 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/04 16:10:44 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 21:04:16 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,26 @@ static t_ft_ssl_error_info	g_error_info[] = {
 		"Try to check errno for additional information"
 	},
 	{
+		FT_SSL_READ_FAIL,
+		"System call read was not successful",
+		"Try to check errno for additional information"
+	},
+	{
+		FT_SSL_EOF,
+		"Function reached EOF",
+		NULL
+	},
+	{
+		FT_SSL_OPEN_FAIL,
+		"System call open was not successful",
+		"Try to check errno for additional information"
+	},
+	{
+		FT_SSL_CLOSE_FAIL,
+		"System call close was not successful",
+		"Try to check errno for additional information"
+	},
+	{
 		FT_SSL_MALLOC_FAIL,
 		"System call malloc was not successful",
 		"Try to check errno for additional information"
@@ -52,7 +72,7 @@ static t_ft_ssl_error_info	g_error_info[] = {
 	},
 };
 
-void	error_exit(t_ft_ssl_error e, char *arg, void (*f)(void))
+void	error_exit(t_ft_ssl_status e, char *arg, void (*f)(void))
 {
 	int		i;
 

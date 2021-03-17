@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 15:58:55 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 20:57:06 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,13 @@ static void				md5_init(t_md5_state *state)
 	state->bufs.four[3] = 0x10325476;
 }
 
-static t_ft_ssl_error	md5_loop(
+static t_ft_ssl_status	md5_loop(
 	uint8_t *input,
 	ssize_t input_length,
 	t_md5_state *state)
 {
 	ssize_t			i;
-	t_ft_ssl_error	err;
+	t_ft_ssl_status	err;
 	int				run;
 
 	i = 0;
@@ -108,7 +108,7 @@ char					*md5_main(uint8_t *input, size_t input_length)
 {
 	t_md5_state		state;
 	size_t			i;
-	t_ft_ssl_error	err;
+	t_ft_ssl_status	err;
 	char			*out;
 	size_t			out_size;
 
