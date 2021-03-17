@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:23:56 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 15:52:26 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/17 16:37:23 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # endif
 
 # ifndef LOG
-#  define LOG 1
+#  define LOG 0
 # endif
 
 #endif

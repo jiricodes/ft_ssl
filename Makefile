@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/17 12:22:56 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/17 16:36:21 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,13 @@ INC_DIR = includes
 INCLUDES = -I $(INC_DIR)/ -I libft/includes
 
 CFLAGS = 
+
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CFLAGS += -DDEBUG=1
+else
+	CFLAGS += -DDEBUG=0
+endif
 
 LDFLAGS = -L libft -lft
 
