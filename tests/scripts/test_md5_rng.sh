@@ -74,7 +74,7 @@ do
 	d=$(diff -q $orig $res)
 	if [ "$d" != "" ]
 	then
-		echo -e "\nERROR"
+		echo -e "\n${C_RED}ERROR${C_EOC}"
 		exit 1
 	fi
 	CURRENT=$(date +"%s.%N")
@@ -84,5 +84,5 @@ do
 done
 print_status_bar $TIME_DIFF $i $N "\n"
 prc=$(echo "scale=6; ($A_FTSSL / $A_ORIG) * 100" | bc)
-printf "FT_SSL relative speed %.2f%% | AVG file size: %d\n" $prc $A_RNGBYTE
+printf "${C_GREEN}Success${C_EOC} | FT_SSL relative speed %.2f%% | AVG file size: %d\n" $prc $A_RNGBYTE
 rm $tmp $orig $res

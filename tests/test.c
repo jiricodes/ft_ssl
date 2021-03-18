@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 13:31:13 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:39:30 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1481,7 +1481,7 @@ static void unittest_md5()
 	int current = 0;
 	int total = 166;
 
-	CATEGORY("md5");
+	CATEGORY("md5 string");
 	unittest_md5_one("", "d41d8cd98f00b204e9800998ecf8427e", &current, total);
 	unittest_md5_one("a", "0cc175b9c0f1b6a831c399e269772661", &current, total);
 	unittest_md5_one("abc", "900150983cd24fb0d6963f7d28e17f72", &current, total);

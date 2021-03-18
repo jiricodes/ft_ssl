@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/18 15:03:51 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/18 15:44:34 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,8 +82,9 @@ $(NAME): $(OBJECTS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LDFLAGS)
 
 run:
-	./$(NAME)
-	./scripts/test_md5_rng.sh $(GEN_N) $(ORIG_NAME) $(FILE_SIZE)
+	@./$(NAME)
+	@echo "\nTEST: md5 file"
+	@./scripts/test_md5_rng.sh $(GEN_N) $(ORIG_NAME) $(FILE_SIZE)
 
 clean:
 	-@rm $(OBJECTS) 2> /dev/null || true
