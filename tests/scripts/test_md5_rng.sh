@@ -2,10 +2,21 @@
 N=$1
 FTSSL=$2
 tmp=md5rngtest
+orig=md5originaltest
+res=md5ftssltest
 for i in `seq $N`
 do
-	dd if=/dev/random of=$tmp bs=124 count=1 > /dev/null 2>/dev/null
-	p=$(cat $tmp) > /dev/null 2>/dev/null
-	echo -n $p | md5sum | awk '{print $1}'
-	./$FTSSL md5 "$p"
+	r=$(( ($RANDOM % 4096) + 1 ))
+	dd if=/dev/random of=$tmp bs=$r count=1 > /dev/null 2>/dev/null
+	md5sum $tmp | awk '{print $1}' > $orig
+	./$FTSSL md5 $tmp > $res
+	d=$(diff -q $orig $res)
+	if [ "$d" != "" ]
+	then
+		echo -e "\nERROR"
+		exit 1
+	fi
+	echo -ne "\r$i / $N"
 done
+echo ""
+rm $tmp $orig $res

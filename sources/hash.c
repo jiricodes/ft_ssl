@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 12:53:15 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:14:44 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ static t_ft_ssl_status	get_input(int argc, char **argv, t_hash_input *input)
 	return (ret);
 }
 
-static t_ft_ssl_status	get_hash_function(char *name, t_hashfnc	*fnc)
+static t_hashfnc	get_hash_function(char *name)
 {
 	if (ft_strequ(name, "md5"))
-	{
-		fnc = &md5_main;
-		return (FT_SSL_OK);
-	}
-	return (FT_SSL_INVALID_COMMAND);
+		return (md5_main);
+	return (NULL);
 }
 
 int		hash_main(int argc, char **argv)
@@ -60,9 +57,9 @@ int		hash_main(int argc, char **argv)
 
 	if (argc)
 	{
-		ret = get_hash_function(argv[0], &fnc);
-		if (ret != FT_SSL_OK)
-			return (ret);
+		fnc = get_hash_function(argv[0]);
+		if (!fnc)
+			return (FT_SSL_UNDEFINED);
 		ret = get_input(argc - 1, argv + 1, &input);
 		if (ret != FT_SSL_OK)
 			return (ret);
