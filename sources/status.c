@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   status.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:26:39 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 21:04:16 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:48:16 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_ssl_utils.h"
 #include "stddef.h"
 
-static t_ft_ssl_error_info	g_error_info[] = {
+static t_ft_ssl_status_info	g_error_info[] = {
 	{
 		FT_SSL_OK,
 		"OK",
@@ -36,9 +36,19 @@ static t_ft_ssl_error_info	g_error_info[] = {
 		"Try to check errno for additional information"
 	},
 	{
+		FT_SSL_WANT_READ,
+		"There's more data on the file descriptor to be read",
+		NULL
+	},
+	{
 		FT_SSL_EOF,
 		"Function reached EOF",
 		NULL
+	},
+	{
+		FT_SSL_SMALL_BUFFER,
+		"Provided buffer is too small",
+		"Check documentation for minimum buffer size"
 	},
 	{
 		FT_SSL_OPEN_FAIL,

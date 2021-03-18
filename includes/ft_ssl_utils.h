@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:03:05 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 20:57:06 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 11:50:05 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,7 @@ void			ft_print_fmt_block(const char *buf);
 t_ft_ssl_status	uint8_print_fmt(uint8_t *buffer, size_t buffer_size);
 t_ft_ssl_status	ft_print_binary_fd(uint8_t *bytestream, size_t len, int fd);
 t_ft_ssl_status	ft_print_hex_fd(uint8_t *bytestream, size_t len, int fd);
+t_ft_ssl_status	open_file(const char *filename, int *fd, int flag);
+t_ft_ssl_status	close_file(int fd);
+t_ft_ssl_status	read_file(int fd, uint8_t *out, size_t *out_size);
 #endif

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 20:57:06 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:39:47 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void				md5_init(t_md5_state *state)
 	state->bufs.four[3] = 0x10325476;
 }
 
-static t_ft_ssl_status	md5_loop(
+static t_ft_ssl_status	md5_loop_str(
 	uint8_t *input,
 	ssize_t input_length,
 	t_md5_state *state)
@@ -104,7 +104,37 @@ static t_ft_ssl_status	md5_loop(
 	return (FT_SSL_OK);
 }
 
-char					*md5_main(uint8_t *input, size_t input_length)
+static t_ft_ssl_status	md5_loop_file(
+	int fd,
+	t_md5_state *state)
+{
+	t_ft_ssl_status	err;
+	int				run;
+	uint8_t			input[MD5_BLOCK_SIZE];
+	ssize_t			input_length;
+
+	run = 1;
+	while (run)
+	{
+		input_length = MD5_BLOCK_SIZE;
+		ft_bzero(input, MD5_BLOCK_SIZE);
+		err = read_file(fd, (uint8_t *)input, &input_length);
+		if (err != FT_SSL_EOF && err != FT_SSL_WANT_READ)
+			return (err);
+		run = md5_pad(input, input_length, &state->block);
+		if (DEBUG)
+		{
+			err = uint8_print_fmt((uint8_t *)&state->block, MD5_BLOCK_SIZE);
+			if (err != FT_SSL_OK)
+				return (err);
+		}
+		err = md5_block(state);
+		if (err != FT_SSL_OK)
+	}
+	return (FT_SSL_OK);
+}
+
+char					*md5_main(t_hash_input *input)
 {
 	t_md5_state		state;
 	size_t			i;
@@ -116,7 +146,7 @@ char					*md5_main(uint8_t *input, size_t input_length)
 	out = NULL;
 	out_size = 0;
 	md5_init(&state);
-	err = md5_loop(input, input_length, &state);
+	err = md5_loop_str(input->input, input->input_length, &state);
 	if (err == FT_SSL_OK)
 	{
 		if ((err = ft_to_hexstr((uint8_t *)&state.bufs, \

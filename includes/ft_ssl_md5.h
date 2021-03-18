@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 20:09:45 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 12:22:24 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:39:00 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <string.h>
 # include "ft_ssl_error.h"
 # include "ft_ssl_utils.h"
+# include "ft_ssl_hash.h"
 # include "libft.h"
 
 /*
@@ -73,6 +74,6 @@ uint32_t			ft_md5_g(uint32_t b, uint32_t c, uint32_t d);
 uint32_t			ft_md5_h(uint32_t b, uint32_t c, uint32_t d);
 uint32_t			ft_md5_i(uint32_t b, uint32_t c, uint32_t d);
 int					md5_block(t_md5_state *state);
-char				*md5_main(uint8_t *input, size_t input_length);
+char				*md5_main(t_hash_input *input);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/17 21:11:01 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/18 12:45:38 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,13 @@ LDFLAGS = -L libft -lft
 
 LIBFT = libft/libft.a
 
-SRC_FILES =	error.c \
+SRC_FILES =	status.c \
 			hash.c \
 			main.c \
 			md5_functions.c \
 			md5_main.c \
 			md5_round.c \
+			read.c \
 			utils_bits.c \
 			utils_print.c \
 			utils_string.c
@@ -93,8 +94,7 @@ check-forbidden-silent:
 	@make check-forbidden > /dev/null
 
 GIT_COMMENT ?= "autosave"
-git-autosave:
-	make fclean
+git-autosave: fclean
 	@git add .
 	@git commit -m $(GIT_COMMENT)
 	git push

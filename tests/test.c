@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 16:01:09 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:13:23 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1646,7 +1646,46 @@ static void unittest_md5()
 	unittest_md5_one("elit, aliquet lacinia arcu aliquet nec. Etiam sed ante ac", "98f5878aef03e9d776fefbec299a0b78", &current, total);
 }
 
-int			main(void)
+/*
+** read ************************************************************************
+*/
+
+static void unittest_read(char *file)
+{
+	int current = 0;
+	int total = 0;
+	int fd;
+	t_ft_ssl_status ret;
+	char	buffer[65];
+	size_t	len;
+
+	ret = FT_SSL_OK;
+	fd = -1;
+	memset(buffer, 0, sizeof(buffer));
+	CATEGORY("read_file");
+	ret = open_file(file, &fd, O_RDONLY);
+	assert(ret == FT_SSL_OK);
+	ret = FT_SSL_WANT_READ;
+	while (ret == FT_SSL_WANT_READ)
+	{
+		len = sizeof(buffer) - 1;
+		memset(buffer, 0, sizeof(buffer));
+		ret = read_file(fd, (uint8_t *)buffer, &len);
+		assert(ret == FT_SSL_EOF || ret == FT_SSL_WANT_READ);
+		if (ret != FT_SSL_EOF)
+			total += len;
+		current++;
+	}
+	ret = close_file(fd);
+	assert(ret == FT_SSL_OK);
+	// make it smarter
+	assert(total == 12929);
+	current = 1;
+	total = 1;
+	STATUS(current, total);
+}
+
+int			main(int argc, char **argv)
 {
 	if (VERBOSE)
 		printf(COLOR_BLUE"UNIT TEST FOR FT_SSL\n"EOC);
@@ -1658,5 +1697,7 @@ int			main(void)
 	unittest_md5h();
 	unittest_md5i();
 	unittest_md5();
+	if (argc > 1)
+		unittest_read(argv[1]);
 	return (0);
 }
