@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:56:20 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 12:13:23 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:31:13 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1461,11 +1461,15 @@ static void	unittest_binstr()
 
 static void unittest_md5_one(char *str, char *expected, int *current, int total)
 {
-	char *out = NULL;
-	size_t out_len;
+	char			*out = NULL;
+	size_t			out_len;
+	t_hash_input	input;
 
+	input.fd = -1;
+	input.input = (uint8_t *)str;
+	input.input_length = ft_strlen(str);
 	*current += 1;
-	out = md5_main((uint8_t *)str, ft_strlen(str));
+	out = md5_main(&input);
 	assert(!strcmp(out, expected));
 	free(out);
 	out = NULL;
