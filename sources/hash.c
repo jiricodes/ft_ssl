@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 13:14:44 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 15:57:07 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_ft_ssl_status	get_input(int argc, char **argv, t_hash_input *input)
 	input->fd = -1;
 	if (argc > 1 && ft_strequ(argv[0], "-s"))
 	{
-		input->input = argv[1];
+		input->input = (uint8_t *)argv[1];
 		input->input_length =ft_strlen(argv[1]);
 	}
 	else if (argc)

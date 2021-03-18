@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 13:14:49 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 16:00:18 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ static t_ft_ssl_status	md5_loop_file(
 	{
 		input_length = MD5_BLOCK_SIZE;
 		ft_bzero(input, MD5_BLOCK_SIZE);
-		err = read_file(fd, (uint8_t *)input, &input_length);
+		err = read_file(fd, (uint8_t *)input, (size_t *)&input_length);
 		if (err != FT_SSL_EOF && err != FT_SSL_WANT_READ)
 			return (err);
 		run = md5_pad(input, input_length, &state->block);
@@ -129,7 +129,8 @@ static t_ft_ssl_status	md5_loop_file(
 				return (err);
 		}
 		err = md5_block(state);
-		if (err != FT_SSL_OK);
+		if (err != FT_SSL_OK)
+			return (err);
 	}
 	return (FT_SSL_OK);
 }
