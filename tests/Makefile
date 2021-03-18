@@ -6,12 +6,14 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/18 11:09:24 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/18 15:03:51 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ssl_test
 CC ?= gcc
+
+ORIG_NAME ?= ../ft_ssl
 
 INCLUDES = -I ../includes/ -I ../libft/includes
 
@@ -58,6 +60,8 @@ TEST_FILES =	result \
 
 OBJECTS = $(SOURCES:.c=.o)
 
+FILE_SIZE ?= 1024
+
 .PHONY: all clean fclean re
 
 all: build run
@@ -79,6 +83,7 @@ $(NAME): $(OBJECTS)
 
 run:
 	./$(NAME)
+	./scripts/test_md5_rng.sh $(GEN_N) $(ORIG_NAME) $(FILE_SIZE)
 
 clean:
 	-@rm $(OBJECTS) 2> /dev/null || true

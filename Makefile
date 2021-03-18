@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/01 16:00:45 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/18 12:45:38 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/18 14:45:21 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,12 +70,12 @@ $(LIBFT):
 $(NAME): $(LIBFT) $(OBJECTS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJECTS) $(LDFLAGS)
 
-test: norm-silent check-forbidden-silent
+test: norm-silent check-forbidden-silent $(NAME)
 	@make -C tests
 
-test-verb: norm check-forbidden
+test-verb: norm check-forbidden $(NAME)
 	@echo "$(C_BLUE)Running UNITTEST$(C_EOC)"
-	@make -C tests VERB=1
+	@make -C tests VERB=1 ORIG_NAME=../$(NAME)
 
 norm:
 	@echo "$(C_BLUE)Norminette check$(C_EOC)"
