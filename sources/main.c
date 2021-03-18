@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/17 12:19:39 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:01:21 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,30 @@ void			usage(void)
 static int		console(void)
 {
 	ft_printf("Console mode not implemented!\n");
-	return (0);
+	return (FT_SSL_UNDEFINED);
 }
 
 int				main(int argc, char **argv)
 {
-	int		i;
+	int				i;
+	t_ft_ssl_status	ret;
 
+	ret = FT_SSL_INVALID_COMMAND;
 	if (argc < 2)
-		return (console());
-	i = 0;
-	while (g_cmdlist[i].name && argv[1])
+		ret = console();
+	else
 	{
-		if (ft_strequ(g_cmdlist[i].name, argv[1]))
-			return (g_cmdlist[i].cmd_fnc(argc - 1, argv + 1));
-		i++;
+		i = 0;
+		while (g_cmdlist[i].name && argv[1])
+		{
+			if (ft_strequ(g_cmdlist[i].name, argv[1]))
+				ret = g_cmdlist[i].cmd_fnc(argc - 1, argv + 1);
+			i++;
+		}
 	}
-	error_exit(FT_SSL_INVALID_COMMAND, argv[1], &usage);
-	return (0);
+	if (ret == FT_SSL_INVALID_COMMAND)
+		error_exit(ret, argv[1], &usage);
+	else if (ret != FT_SSL_OK)
+		error_exit(ret, NULL, NULL);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 11:45:46 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 12:39:47 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 13:04:21 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ static t_ft_ssl_status	md5_loop_file(
 				return (err);
 		}
 		err = md5_block(state);
-		if (err != FT_SSL_OK)
+		if (err != FT_SSL_OK);
 	}
 	return (FT_SSL_OK);
 }
@@ -146,7 +146,10 @@ char					*md5_main(t_hash_input *input)
 	out = NULL;
 	out_size = 0;
 	md5_init(&state);
-	err = md5_loop_str(input->input, input->input_length, &state);
+	if (input->fd == -1)
+		err = md5_loop_str(input->input, input->input_length, &state);
+	else
+		err = md5_loop_file(input->fd, &state);
 	if (err == FT_SSL_OK)
 	{
 		if ((err = ft_to_hexstr((uint8_t *)&state.bufs, \

@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 12:51:51 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 12:44:55 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/18 12:53:15 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,21 @@
 */
 static t_ft_ssl_status	get_input(int argc, char **argv, t_hash_input *input)
 {
+	t_ft_ssl_status	ret;
+
+	ret = FT_SSL_OK;
 	ft_bzero(input, sizeof(t_hash_input));
 	input->fd = -1;
+	if (argc > 1 && ft_strequ(argv[0], "-s"))
+	{
+		input->input = argv[1];
+		input->input_length =ft_strlen(argv[1]);
+	}
+	else if (argc)
+		ret = open_file(argv[0], &input->fd, O_RDONLY);
+	else
+		ret = FT_SSL_INVALID_ARGUMENT;
+	return (ret);
 }
 
 static t_ft_ssl_status	get_hash_function(char *name, t_hashfnc	*fnc)
@@ -54,15 +67,12 @@ int		hash_main(int argc, char **argv)
 		if (ret != FT_SSL_OK)
 			return (ret);
 		out = NULL;
-		if (ft_strequ(argv[0], "md5"))
-		{
-			if (argc > 2 && ft_strequ(argv[1], "-s"))
-				out = md5_main(argv[2], ft_strlen(argv[1]));
-		}
+		out = fnc(&input);
 		ft_printf("%s\n", out);
 		free(out);
-		return (0);
+		return (FT_SSL_OK);
 	}
 	ft_printf("\nNot implemented!\n");
 	ft_printf("%u\n", sizeof(t_md5_state));
+	return (FT_SSL_UNDEFINED);
 }
