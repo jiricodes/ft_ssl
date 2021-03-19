@@ -19,7 +19,7 @@ else
 	echo "Please post issue at https://github.com/jiricodes/ft_ssl if you desire a fix."
 fi
 
-N=$1
+CNT=$1
 FTSSL=$2
 blim=$3
 tmp=md5rngtest
@@ -65,7 +65,7 @@ fst=0
 rng_bytes=0
 
 SCRIPT_START=$(date +"%s.%N")
-for i in `seq $N`
+for i in `seq $CNT`
 do
 	START=$(date +"%s.%N")
 	r=$(( ($RANDOM % $blim) + 1 ))
@@ -93,9 +93,9 @@ do
 	CURRENT=$(date +"%s.%N")
     timediff $SCRIPT_START $CURRENT
 	averages $rt $ot $fst $rng_bytes $i
-    print_status_bar $TIME_DIFF $i $N "\r"
+    print_status_bar $TIME_DIFF $i $CNT "\r"
 done
-print_status_bar $TIME_DIFF $i $N "\n"
+print_status_bar $TIME_DIFF $i $CNT "\n"
 prc=$(echo "scale=6; ($A_FTSSL / $A_ORIG) * 100" | bc)
 printf "${C_GREEN}Success${C_EOC} | FT_SSL relative speed %.2f%% | AVG file size: %d\n" $prc $A_RNGBYTE
 rm $tmp $orig $res
