@@ -44,5 +44,5 @@ do
     print_status_bar $i $CNT "\r"
 done
 print_status_bar $i $CNT "\n"
-echo "${C_GREEN}Success${C_EOC}"
+echo -e "${C_GREEN}Success${C_EOC}"
 rm $tmp $orig $res
