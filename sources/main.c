@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/02 16:21:15 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 13:01:21 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/19 20:15:04 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,19 @@
 #define CIPH_CMD_STR "\nCipher commands:\n"
 
 /*
+** Function Prototypes  ********************************************************
+*/
+
+static int		usage_wrapper(int argc, char **argv);
+
+/*
 ** Variables *******************************************************************
 */
 
 static const t_cmds		g_cmdlist[] = {
 	{"md5", CMD_HASH, hash_main},
 	{"sha256", CMD_HASH, hash_main},
+	{"--help", CMD_NONE, usage_wrapper},
 	{NULL, CMD_NONE, NULL}
 };
 
@@ -63,6 +70,18 @@ void			usage(void)
 	print_cmds(CMD_HASH);
 	ft_printf(CIPH_CMD_STR);
 	print_cmds(CMD_CIPH);
+}
+
+static int		usage_wrapper(int argc, char **argv)
+{
+	void	*nothing;
+
+	nothing = (void *)&argc;
+	nothing = (void *)*argv;
+	usage();
+	ft_printf("\nOther options:\n"
+				"--help\tshows help\n");
+	return (FT_SSL_OK);
 }
 
 static int		console(void)
