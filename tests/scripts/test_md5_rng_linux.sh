@@ -6,19 +6,6 @@ then
 	exit 1
 fi
 
-os=`uname`
-
-if [[ "$os" == "Linux" ]];
-then
-	md5cmd=md5sum
-elif [[ "$os" == "Darwin" ]];
-then
-	md5cmd="md5 -r"
-else
-	echo "Unsupported OS - sorry!" 
-	echo "Please post issue at https://github.com/jiricodes/ft_ssl if you desire a fix."
-fi
-
 CNT=$1
 FTSSL=$2
 blim=$3
@@ -75,7 +62,7 @@ do
 	timediff $START $END
 	rt=$(echo "scale=6;$rt + $TIME_DIFF" | bc)
 	START=$(date +"%s.%N")
-	$md5cmd $tmp | awk '{print $1}' > $orig
+	md5sum $tmp | awk '{print $1}' > $orig
 	END=$(date +"%s.%N")
 	timediff $START $END
 	ot=$(echo "scale=6;$ot + $TIME_DIFF" | bc)

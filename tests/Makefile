@@ -6,7 +6,7 @@
 #    By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/03 12:11:21 by jnovotny          #+#    #+#              #
-#    Updated: 2021/03/18 15:44:34 by jnovotny         ###   ########.fr        #
+#    Updated: 2021/03/19 21:38:46 by jnovotny         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,15 @@ CFLAGS = -DDEBUG=0 -DLOG=0
 
 ifdef VERB
 CFLAGS += -DVERBOSE=1
+endif
+
+UNAME=$(shell uname -s)
+ifeq ($(UNAME),Linux)
+	MD5RNG = test_md5_rng_linux.sh
+else ifeq ($(UNAME),Darwin)
+	MD5RNG = test_md5_rng_darwin.sh
+else
+	MD5RNG = not_supported.sh
 endif
 
 LDFLAGS = -L ../libft -lft
@@ -84,7 +93,7 @@ $(NAME): $(OBJECTS)
 run:
 	@./$(NAME)
 	@echo "\nTEST: md5 file"
-	@./scripts/test_md5_rng.sh $(GEN_N) $(ORIG_NAME) $(FILE_SIZE)
+	@./scripts/$(MD5RNG) $(GEN_N) $(ORIG_NAME) $(FILE_SIZE)
 
 clean:
 	-@rm $(OBJECTS) 2> /dev/null || true
