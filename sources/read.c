@@ -6,7 +6,7 @@
 /*   By: jnovotny <jnovotny@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/17 19:55:10 by jnovotny          #+#    #+#             */
-/*   Updated: 2021/03/18 12:26:26 by jnovotny         ###   ########.fr       */
+/*   Updated: 2021/03/19 11:33:05 by jnovotny         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "ft_ssl_utils.h"
 
-#define READ_BUF_SIZE 64
+#define READ_BUF_SIZE 10000
 
 /*
 ** Functions  ******************************************************************
@@ -48,9 +48,9 @@ t_ft_ssl_status	read_file(int fd, uint8_t *out, size_t *out_size)
 	ssize_t		ret;
 	uint8_t		buf[READ_BUF_SIZE];
 
-	if (*out_size < READ_BUF_SIZE)
-		return (FT_SSL_SMALL_BUFFER);
-	ret = read(fd, (uint8_t *)buf, READ_BUF_SIZE);
+	// if (*out_size < READ_BUF_SIZE)
+	// 	return (FT_SSL_SMALL_BUFFER);
+	ret = read(fd, (uint8_t *)buf, READ_BUF_SIZE < *out_size ? READ_BUF_SIZE : *out_size);
 	if (ret == -1)
 		return (FT_SSL_READ_FAIL);
 	else if (ret == 0)
